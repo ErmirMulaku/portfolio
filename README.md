@@ -126,6 +126,17 @@ npm run build
 npm run start
 ```
 
+### Continuous deployment
+
+Deploys are handled by **Vercel's native Git integration** — no CI configuration needed.
+Once the repo is imported, every push to `master` ships to production and every pull
+request gets a preview URL automatically.
+
+> If you'd rather drive deploys from GitHub Actions instead, add a workflow that runs the
+> Vercel CLI with `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` secrets — and
+> disable Vercel's automatic Git deploys (**Project → Settings → Git**) first, so a push
+> doesn't deploy twice.
+
 ---
 
 Built with [Next.js](https://nextjs.org). © Ermir Mulaku.
