@@ -42,9 +42,7 @@ export const profile = {
   email: 'ermirmulaku4@gmail.com',
 
   socials: {
-    // TODO(owner): confirm personal GitHub handle. The S2O org is `s2o-tech`;
-    // linking the org here until a personal handle is provided.
-    github: { label: 'GitHub', href: 'https://github.com/s2o-tech' } as SocialLink,
+    github: { label: 'GitHub', href: 'https://github.com/ErmirMulaku' } as SocialLink,
     linkedin: {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/ermir-mulaku-42059a137/',

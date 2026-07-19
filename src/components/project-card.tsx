@@ -11,10 +11,10 @@ function primaryHost(project: Project): string {
   return primary ? hostFromUrl(primary) : '';
 }
 
-/** Media block — browser frame, plus an overlapping phone frame for multi-platform apps. */
+/** Media block — browser frame, plus overlapping phone frame(s) for multi-platform apps. */
 function ProjectMedia({ project }: { project: Project }) {
   const browser = project.media?.find((m) => m.type === 'browser');
-  const phone = project.media?.find((m) => m.type === 'phone');
+  const phones = project.media?.filter((m) => m.type === 'phone') ?? [];
   const host = primaryHost(project);
 
   return (
@@ -22,11 +22,16 @@ function ProjectMedia({ project }: { project: Project }) {
       <DeviceFrame
         variant="browser"
         host={host}
+        src={browser?.src}
         label={browser?.alt ?? `${project.name} preview`}
       />
-      {phone ? (
-        <div className="absolute -bottom-6 -right-3 w-[28%] max-w-[130px] sm:-right-6">
-          <DeviceFrame variant="phone" label={phone.alt} />
+      {phones.length > 0 ? (
+        <div className="absolute -bottom-6 right-0 flex items-end gap-2 sm:-right-4">
+          {phones.map((phone) => (
+            <div key={phone.src} className="w-[24%] min-w-[84px] max-w-[120px]">
+              <DeviceFrame variant="phone" src={phone.src} label={phone.alt} />
+            </div>
+          ))}
         </div>
       ) : null}
     </div>
@@ -116,6 +121,7 @@ export function CompactProjectCard({ project }: { project: Project }) {
           <DeviceFrame
             variant="browser"
             host={host}
+            src={browser?.src}
             label={browser?.alt ?? `${project.name} preview`}
           />
         </div>

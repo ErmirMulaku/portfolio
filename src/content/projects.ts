@@ -104,21 +104,21 @@ export const projects: Project[] = [
         href: 'https://play.google.com/store/apps/details?id=com.s2o.app',
         kind: 'playstore',
       },
-      {
-        label: 'Desktop (GitHub Releases)',
-        href: 'https://github.com/s2o-tech/s2o-desktop-app/releases/tag/latest',
-        kind: 'github',
-      },
     ],
     media: [
       {
         type: 'browser',
-        src: '/screenshots/scan2order-menu.png',
+        src: '/screenshots/s2o-desktop-app.png',
+        alt: 'Screenshot of the Scan2Order desktop app.',
+      },
+      {
+        type: 'phone',
+        src: '/screenshots/s2o-menu.png',
         alt: 'Screenshot of the Scan2Order NFC web menu.',
       },
       {
         type: 'phone',
-        src: '/screenshots/scan2order-app.png',
+        src: '/screenshots/s2o-app.png',
         alt: 'Screenshot of the Scan2Order staff mobile app.',
       },
     ],

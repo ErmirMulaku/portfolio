@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -5,24 +6,25 @@ type DeviceFrameProps = {
   variant: 'browser' | 'phone';
   /** Host shown in the browser URL bar, e.g. "eduwo.ch". */
   host?: string;
-  /** Accessible description of what the frame previews. */
+  /** Screenshot path under /public. When set, the real image renders in the frame. */
+  src?: string;
+  /** Accessible description / alt text for the preview. */
   label: string;
   className?: string;
 };
 
 /*
- * Device mockups (SPEC §5.2). Screenshots are not yet captured, so these render a
- * clearly-labeled placeholder at the correct aspect ratio — never a broken <img>.
- * TODO(owner): drop real screenshots in /public/screenshots and swap the placeholder
- * body for a next/image fill here.
+ * Device mockups (SPEC §5.2). Renders a real screenshot via next/image when `src` is
+ * provided; otherwise falls back to a clearly-labeled placeholder at the correct aspect
+ * ratio — never a broken <img>.
  */
 
-export function DeviceFrame({ variant, host, label, className }: DeviceFrameProps) {
+export function DeviceFrame({ variant, host, src, label, className }: DeviceFrameProps) {
   if (variant === 'phone') {
     return (
       <div
-        role="img"
-        aria-label={label}
+        role={src ? undefined : 'img'}
+        aria-label={src ? undefined : label}
         className={cn(
           'relative mx-auto aspect-[9/19] w-full max-w-[220px] rounded-[2rem] border border-border-strong',
           'bg-bg-elevated p-2 shadow-2xl shadow-black/40',
@@ -32,7 +34,17 @@ export function DeviceFrame({ variant, host, label, className }: DeviceFrameProp
         <div className="relative h-full w-full overflow-hidden rounded-[1.5rem] bg-surface">
           {/* Notch */}
           <div className="absolute left-1/2 top-2 z-10 h-1.5 w-16 -translate-x-1/2 rounded-full bg-black/60" />
-          <PlaceholderBody host={host} />
+          {src ? (
+            <Image
+              src={src}
+              alt={label}
+              fill
+              sizes="(max-width: 768px) 40vw, 220px"
+              className="object-cover object-top"
+            />
+          ) : (
+            <PlaceholderBody host={host} />
+          )}
         </div>
       </div>
     );
@@ -40,8 +52,8 @@ export function DeviceFrame({ variant, host, label, className }: DeviceFrameProp
 
   return (
     <div
-      role="img"
-      aria-label={label}
+      role={src ? undefined : 'img'}
+      aria-label={src ? undefined : label}
       className={cn(
         'w-full overflow-hidden rounded-xl border border-border bg-bg-elevated shadow-2xl shadow-black/40',
         className,
@@ -59,13 +71,23 @@ export function DeviceFrame({ variant, host, label, className }: DeviceFrameProp
         </span>
       </div>
       <div className="relative aspect-[16/10] w-full bg-surface">
-        <PlaceholderBody host={host} />
+        {src ? (
+          <Image
+            src={src}
+            alt={label}
+            fill
+            sizes="(max-width: 1024px) 100vw, 600px"
+            className="object-cover object-top"
+          />
+        ) : (
+          <PlaceholderBody host={host} />
+        )}
       </div>
     </div>
   );
 }
 
-/** Subtle gradient + icon placeholder. */
+/** Subtle gradient + icon placeholder (used when no screenshot is available). */
 function PlaceholderBody({ host }: { host?: string }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(ellipse_at_top,_rgba(45,212,191,0.10),_transparent_60%)]">
