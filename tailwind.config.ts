@@ -62,14 +62,9 @@ const config: Config = {
           '0%, 100%': { opacity: '1', transform: 'scale(1)' },
           '50%': { opacity: '0.55', transform: 'scale(0.82)' },
         },
-        marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
       },
       animation: {
         'pulse-dot': 'pulse-dot 2s ease-in-out infinite',
-        marquee: 'marquee 32s linear infinite',
       },
     },
   },

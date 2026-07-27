@@ -57,7 +57,7 @@ going live so metadata URLs are absolute.
 All copy lives in one place — no need to touch components:
 
 - **`src/content/profile.ts`** — name, headline, socials, stats, approach pillars, skills,
-  certifications, education, about narrative, trust strip.
+  certifications, education, about narrative.
 - **`src/content/projects.ts`** — the typed `Project[]` (single source of truth). Set
   `featured: true` for flagship projects (large cards); the rest render as compact cards.
 
@@ -89,7 +89,7 @@ src/
     apple-icon.tsx      # generated Apple touch icon
     sitemap.ts / robots.ts
   components/
-    nav, hero, marquee, work-section, project-card, approach,
+    nav, hero, work-section, project-card, approach,
     skills, about, contact, footer, lenis-provider, analytics
     ui/                 # Reveal, SectionLabel, TechTag, DeviceFrame,
                         # StatCounter, PlatformBadge, ProjectLinks

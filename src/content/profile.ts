@@ -129,22 +129,6 @@ export const profile = {
     'Since then I’ve shipped across every platform: a high-traffic Swiss ed-tech platform, a full restaurant operations system spanning web, iOS, Android and desktop, a two-sided tutoring marketplace, and enterprise sites for data-science and music companies.',
     'I care about the whole product — accessibility, performance, internationalization, and the deployment pipeline that keeps it all running. When in doubt, I remove decoration and let the work speak.',
   ],
-
-  // Trust strip — framed honestly as "products & clients I've built for" (SPEC §4.3).
-  trustStrip: {
-    label: "Products & clients I've built for",
-    items: [
-      'Eduwo',
-      'Scan2Order',
-      'Spicy Analytics',
-      'Pfizer',
-      'Novartis',
-      'Roche',
-      'Vodafone',
-      'Deutsche Telekom',
-      'INTERPOL',
-    ],
-  },
 } as const;
 
 export type Profile = typeof profile;
