@@ -84,12 +84,17 @@ export const profile = {
 
   // Skills / stack — SPEC §6. Nothing invented.
   skills: [
-    { label: 'Languages', items: ['JavaScript', 'TypeScript'] },
+    {
+      label: 'Languages',
+      items: ['JavaScript', 'TypeScript', 'C#', 'Java', 'PHP', 'Python'],
+    },
     {
       label: 'Frontend',
       items: [
         'React',
         'Next.js',
+        'Angular',
+        'Vue.js',
         'Tailwind CSS',
         'HTML/CSS',
         'Advanced React patterns',

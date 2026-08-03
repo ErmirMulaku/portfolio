@@ -3,12 +3,10 @@ import { profile } from '@/content/profile';
 /**
  * Canonical site URL. Set NEXT_PUBLIC_SITE_URL in the environment (and in Vercel) to
  * the production domain so Open Graph / canonical / sitemap URLs are absolute.
- * TODO(owner): confirm the final production domain.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ermirmulaku.com').replace(
-  /\/$/,
-  '',
-);
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.ermir-mulaku.com'
+).replace(/\/$/, '');
 
 export const siteConfig = {
   name: profile.name,
