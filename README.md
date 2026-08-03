@@ -1,5 +1,7 @@
 # Ermir Mulaku — Portfolio
 
+**Live:** [www.ermir-mulaku.com](https://www.ermir-mulaku.com/)
+
 Personal portfolio for a software engineer whose differentiator is shipping complete
 products across every platform — web, mobile, and desktop. Fast, dark-themed, and
 evidence-first: real, live products presented as short case studies with device mockups,
@@ -47,8 +49,9 @@ Copy `.env.example` → `.env.local` and set:
 | `NEXT_PUBLIC_SITE_URL`         | Prod     | Canonical URL for Open Graph, canonical tags, sitemap, robots.      |
 | `NEXT_PUBLIC_ENABLE_ANALYTICS` | No       | `true` to enable privacy-friendly Vercel Analytics. Off by default. |
 
-If `NEXT_PUBLIC_SITE_URL` is unset, it falls back to a placeholder domain — set it before
-going live so metadata URLs are absolute.
+In production `NEXT_PUBLIC_SITE_URL` is `https://www.ermir-mulaku.com`. If it is unset the
+app falls back to a built-in default — set it explicitly so metadata URLs are absolute and
+point at the canonical domain.
 
 ---
 
