@@ -95,6 +95,8 @@ export const profile = {
         'Next.js',
         'Angular',
         'Vue.js',
+        'TanStack Query',
+        'Zustand',
         'Tailwind CSS',
         'HTML/CSS',
         'Advanced React patterns',
