@@ -1,6 +1,7 @@
 export type Platform = 'web' | 'ios' | 'android' | 'desktop';
 
-export type ProjectLinkKind = 'live' | 'appstore' | 'playstore' | 'github' | 'dashboard' | 'menu';
+export type ProjectLinkKind =
+  'live' | 'appstore' | 'playstore' | 'github' | 'dashboard' | 'menu' | 'storybook' | 'npm';
 
 export type ProjectLink = {
   label: string;
@@ -129,16 +130,18 @@ export const projects: Project[] = [
     tagline: 'Two-sided tutoring marketplace with real-time, timezone-aware booking.',
     role: 'Full-stack',
     summary:
-      'A marketplace connecting learners with expert tutors across academics, languages, music, coding and test prep. Learners filter by subject / level / price / rating and book lessons in seconds; slots are timezone- and DST-aware, so the time you see is the time you get. A separate tutor dashboard app lets tutors manage their profile and availability. Fully internationalized including Arabic (RTL).',
+      'A marketplace connecting learners with expert tutors across academics, languages, music, coding and test prep. Learners filter by subject / level / price / rating and book lessons in seconds; slots are timezone- and DST-aware, so the time you see is the time you get. A separate tutor dashboard app lets tutors manage their profile and availability. Fully internationalized including Arabic (RTL). Two pieces are public in their own right: the scheduling core ships as a zero-dependency npm package, and the shared RTL-safe component library is documented in a hosted Storybook.',
     highlights: [
       'Two-sided marketplace + separate dashboard app',
       'Timezone / DST-aware scheduling',
+      'Published npm package (slot engine)',
+      'Storybook-documented UI library',
       'i18n with English + Arabic RTL',
       'Search / filter',
       'Booking flow',
       'Reviews',
     ],
-    stack: ['Next.js', 'React', 'TypeScript', 'i18n (RTL)', 'Scheduling logic'],
+    stack: ['Next.js', 'React', 'TypeScript', 'i18n (RTL)', 'Scheduling logic', 'Storybook', 'npm'],
     platforms: ['web'],
     featured: true,
     links: [
@@ -151,6 +154,16 @@ export const projects: Project[] = [
         label: 'Tutor dashboard',
         href: 'https://tutorhub-dashboard-nine.vercel.app/',
         kind: 'dashboard',
+      },
+      {
+        label: 'Storybook',
+        href: 'https://tutorhub-storybook.vercel.app/',
+        kind: 'storybook',
+      },
+      {
+        label: 'npm: tutorhub-slot-engine',
+        href: 'https://www.npmjs.com/package/tutorhub-slot-engine',
+        kind: 'npm',
       },
     ],
     media: [
