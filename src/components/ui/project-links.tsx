@@ -1,8 +1,10 @@
 import {
   Apple,
   ArrowUpRight,
+  BookOpen,
   Github,
   LayoutDashboard,
+  Package,
   Play,
   QrCode,
   type LucideIcon,
@@ -17,10 +19,12 @@ const LINK_ICON: Record<ProjectLinkKind, LucideIcon> = {
   github: Github,
   dashboard: LayoutDashboard,
   menu: QrCode,
+  storybook: BookOpen,
+  npm: Package,
 };
 
 /** Kinds rendered as prominent "store" badges vs. plain text links. */
-const BADGE_KINDS: ProjectLinkKind[] = ['appstore', 'playstore', 'github'];
+const BADGE_KINDS: ProjectLinkKind[] = ['appstore', 'playstore', 'github', 'storybook', 'npm'];
 
 function LinkButton({ link, prominent }: { link: ProjectLink; prominent: boolean }) {
   const Icon = LINK_ICON[link.kind];
