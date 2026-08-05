@@ -38,6 +38,34 @@ function ProjectMedia({ project }: { project: Project }) {
   );
 }
 
+/**
+ * Project title. When the project has a primary link, the title is an anchor whose
+ * ::after covers the whole (relatively positioned) card — so clicking anywhere on the
+ * card opens the project, while screen readers and keyboard focus still get a single,
+ * properly labelled link. Anything else interactive in the card must sit above it
+ * (`relative z-10`).
+ */
+function ProjectTitle({ project, className }: { project: Project; className?: string }) {
+  const primary = project.links[0];
+
+  if (!primary) {
+    return <h3 className={className}>{project.name}</h3>;
+  }
+
+  return (
+    <h3 className={className}>
+      <a
+        href={primary.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="transition-colors duration-300 after:absolute after:inset-0 after:z-[1] after:content-[''] group-hover:text-accent"
+      >
+        {project.name}
+      </a>
+    </h3>
+  );
+}
+
 function Highlights({ items }: { items: string[] }) {
   return (
     <ul className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
@@ -65,9 +93,10 @@ export function FeaturedProjectCard({ project, index }: { project: Project; inde
         {/* Content */}
         <div className={cn('order-2', mediaRight ? 'lg:order-1' : 'lg:order-2')}>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h3 className="font-sans text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
-              {project.name}
-            </h3>
+            <ProjectTitle
+              project={project}
+              className="font-sans text-2xl font-semibold tracking-tight text-fg sm:text-3xl"
+            />
             {project.timeframe ? (
               <span className="font-mono text-xs text-fg-subtle">{project.timeframe}</span>
             ) : null}
@@ -95,7 +124,7 @@ export function FeaturedProjectCard({ project, index }: { project: Project; inde
             ))}
           </ul>
 
-          <ProjectLinks className="mt-7" links={project.links} />
+          <ProjectLinks className="relative z-10 mt-7" links={project.links} />
         </div>
 
         {/* Media */}
@@ -115,7 +144,7 @@ export function CompactProjectCard({ project }: { project: Project }) {
   const browser = project.media?.find((m) => m.type === 'browser');
 
   return (
-    <article className="bg-surface/40 group flex h-full flex-col rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface">
+    <article className="bg-surface/40 group relative flex h-full flex-col rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface">
       <div className="mb-6 overflow-hidden rounded-lg">
         <div className="transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]">
           <DeviceFrame
@@ -127,7 +156,10 @@ export function CompactProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      <h3 className="font-sans text-xl font-semibold tracking-tight text-fg">{project.name}</h3>
+      <ProjectTitle
+        project={project}
+        className="font-sans text-xl font-semibold tracking-tight text-fg"
+      />
       <p className="mt-1 font-mono text-[0.7rem] uppercase tracking-wider text-accent">
         {project.role}
       </p>
@@ -141,7 +173,7 @@ export function CompactProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
 
-      <div className="mt-auto pt-6">
+      <div className="relative z-10 mt-auto pt-6">
         <ProjectLinks links={project.links} />
       </div>
     </article>
