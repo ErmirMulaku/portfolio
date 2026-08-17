@@ -1,7 +1,15 @@
 export type Platform = 'web' | 'ios' | 'android' | 'desktop';
 
 export type ProjectLinkKind =
-  'live' | 'appstore' | 'playstore' | 'github' | 'dashboard' | 'menu' | 'storybook' | 'npm';
+  | 'live'
+  | 'appstore'
+  | 'playstore'
+  | 'github'
+  | 'dashboard'
+  | 'menu'
+  | 'storybook'
+  | 'npm'
+  | 'desktop';
 
 export type ProjectLink = {
   label: string;
@@ -91,9 +99,15 @@ export const projects: Project[] = [
     featured: true,
     links: [
       {
+        // Deep link to a real table so the menu opens with live data instead of an empty state.
         label: 'Web menu',
-        href: 'https://s2o-menu-theta.vercel.app/',
+        href: 'https://s2o-menu-theta.vercel.app/?businessId=ac31efdf-6a08-4f38-a87a-9c6bbbceca4d&tableId=0a741bcb-4126-4d75-9d50-bb841997085b',
         kind: 'menu',
+      },
+      {
+        label: 'Desktop app',
+        href: 'https://github.com/ErmirMulaku/portfolio/releases/download/s2o-desktop-v1.0.0/S2O.Desktop-Setup-1.0.0.exe',
+        kind: 'desktop',
       },
       {
         label: 'App Store',
