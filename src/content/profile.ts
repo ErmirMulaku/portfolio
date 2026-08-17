@@ -20,7 +20,11 @@ export type SkillGroup = {
   items: string[];
 };
 
-export type Certification = string;
+export type Certification = {
+  name: string;
+  issuer: string;
+  year: string;
+};
 
 /**
  * Profile content — name, headline, socials, skills, education.
@@ -82,11 +86,11 @@ export const profile = {
     },
   ] as ApproachPillar[],
 
-  // Skills / stack — SPEC §6. Nothing invented.
+  // Skills / stack — SPEC §6. Nothing invented; every entry is on the résumé.
   skills: [
     {
       label: 'Languages',
-      items: ['JavaScript', 'TypeScript', 'C#', 'Java', 'PHP', 'Python'],
+      items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'C#', 'Java'],
     },
     {
       label: 'Frontend',
@@ -95,34 +99,61 @@ export const profile = {
         'Next.js',
         'Angular',
         'Vue.js',
+        'Redux Toolkit',
         'TanStack Query',
         'Zustand',
         'Tailwind CSS',
-        'HTML/CSS',
+        'SCSS',
         'Advanced React patterns',
-        'Functional programming',
       ],
     },
-    // TODO(owner): confirm exact backend tech to name — kept honest per SPEC §6.
-    { label: 'Backend', items: ['Node.js', 'REST APIs', 'Real-time / WebSockets'] },
-    { label: 'Mobile', items: ['React Native / cross-platform', 'iOS + Android (both stores)'] },
+    {
+      label: 'Backend',
+      items: ['NestJS', 'Node.js', 'Laravel', 'REST APIs', 'GraphQL', 'gRPC', 'Real-time / WebSockets'],
+    },
+    {
+      label: 'Data',
+      items: ['PostgreSQL / Prisma', 'MySQL', 'Queued jobs', 'Multi-tenant design'],
+    },
+    { label: 'Mobile', items: ['React Native / Expo', 'iOS + Android (both stores)'] },
     { label: 'Desktop', items: ['Electron', 'Shipped desktop app'] },
     {
+      label: 'AI / ML',
+      items: [
+        'OpenAI function calling & embeddings',
+        'RAG chatbots',
+        'FAISS vector search',
+        'LightGBM ranking',
+        'AI-assisted development',
+      ],
+    },
+    {
       label: 'Infra / DevOps',
-      items: ['CI/CD', 'Cloud infrastructure', 'Vercel', 'Deployment workflows'],
+      items: [
+        'AWS',
+        'Google Cloud',
+        'Docker',
+        'Kubernetes',
+        'CI/CD (GitHub Actions)',
+        'Vercel',
+        'Prometheus',
+      ],
+    },
+    {
+      label: 'Testing',
+      items: ['Jest', 'Playwright', 'Cypress', 'Testing Library', 'Storybook'],
     },
     {
       label: 'Practices',
-      items: ['Scalable systems', 'Clean architecture', 'i18n / RTL', 'SEO / SSR'],
+      items: ['Scalable systems', 'Clean architecture', 'i18n / RTL', 'SEO / SSR', 'A/B testing'],
     },
   ] as SkillGroup[],
 
   certifications: [
-    'Advanced React Component Patterns',
-    'Advanced JavaScript & React JS',
-    'Functional Programming in JavaScript',
+    { name: 'Advanced React Component Patterns', issuer: 'Udemy', year: '2022' },
+    { name: 'Functional Programming in JavaScript', issuer: 'Udemy', year: '2023' },
+    { name: 'Advanced JavaScript & React', issuer: 'Beetroot Academy', year: '2021' },
   ] as Certification[],
-  certificationSource: 'Zero To Mastery Academy',
 
   education: {
     degree: 'BSc Computer Science',

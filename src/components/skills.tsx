@@ -66,18 +66,20 @@ export function Skills() {
               </p>
               <ul className="mt-5 space-y-3">
                 {profile.certifications.map((cert) => (
-                  <li key={cert} className="flex items-start gap-3 text-sm text-fg-muted">
+                  <li key={cert.name} className="flex items-start gap-3 text-sm text-fg-muted">
                     <span
                       className="mt-[0.45rem] size-1 shrink-0 rounded-full bg-accent"
                       aria-hidden="true"
                     />
-                    {cert}
+                    <span>
+                      {cert.name}
+                      <span className="mt-0.5 block font-mono text-xs text-fg-subtle">
+                        {cert.issuer} · {cert.year}
+                      </span>
+                    </span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-auto pt-5 font-mono text-xs text-fg-subtle">
-                {profile.certificationSource}
-              </p>
             </div>
           </Reveal>
           <Reveal delay={0.06}>
