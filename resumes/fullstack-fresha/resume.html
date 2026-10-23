@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ermir Mulaku — Full-Stack Software Engineer</title>
+<meta name="author" content="Ermir Mulaku">
+<!--
+  Résumé variant: Full-Stack Software Engineer (Fresha application).
+  Source of truth for Ermir-Mulaku-Full-Stack-Engineer.pdf (and public/resume.pdf) — edit this file, then run
+    node resumes/fullstack-fresha/render.mjs
+  Layout mirrors the ReportLab résumé (~/cv-source/build.py): 208pt dark-teal sidebar,
+  Helvetica, 8.4pt body. Each .page is one A4 sheet; content is placed per page by hand.
+-->
+<style>
+  :root {
+    --sidebar-top: #0E2831;
+    --sidebar-bottom: #16333B;
+    --accent: #3FAE8F;
+    --ink: #16242B;
+    --body: #4B575D;
+    --muted: #5D6B71;
+    --side-text: #B9CACF;
+    --side-label: #FFFFFF;
+    --paper: #FFFFFF;
+  }
+
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    color: var(--body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  a { color: inherit; text-decoration: none; }
+  b { font-weight: 700; }
+
+  .page {
+    position: relative;
+    width: 595.28pt;
+    height: 841.89pt;
+    overflow: hidden;
+    display: flex;
+    break-after: page;
+  }
+  .page:last-child { break-after: auto; }
+
+  /* ── sidebar ─────────────────────────────────────────────── */
+  .side {
+    flex: 0 0 208pt;
+    height: 100%;
+    padding: 34pt 20pt;
+    background: linear-gradient(180deg, var(--sidebar-top), var(--sidebar-bottom));
+    color: var(--side-text);
+  }
+  .photo {
+    display: block;
+    width: 79.2pt;
+    height: 79.2pt;
+    margin: 0 auto;
+    padding: 2.6pt;
+    border: 1.4pt solid var(--accent);
+    border-radius: 50%;
+  }
+  .photo img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .name {
+    margin-top: 19pt;
+    text-align: center;
+    font-size: 15.5pt;
+    font-weight: 700;
+    color: var(--side-label);
+  }
+  .name.small { margin-top: 0; font-size: 12.5pt; }
+  .title-lines {
+    margin-top: 7pt;
+    text-align: center;
+    font-size: 7.2pt;
+    line-height: 11pt;
+    font-weight: 700;
+    letter-spacing: 0.8pt;
+    color: var(--accent);
+  }
+  .title-lines { margin-left: -20pt; margin-right: -20pt; }
+  .title-lines .sub { letter-spacing: 0.25pt; font-size: 6.9pt; }
+  .small + .title-lines { margin-top: 5pt; font-size: 6.8pt; line-height: 10.4pt; }
+
+  .side h2 {
+    margin-top: 19pt;
+    font-size: 8.2pt;
+    font-weight: 700;
+    letter-spacing: 1.1pt;
+    font-kerning: none; /* a kerned "TA" makes PDF text extractors split the word: "C O N TA C T" */
+    text-transform: uppercase;
+    color: var(--side-label);
+  }
+  .side h2::after {
+    content: "";
+    display: block;
+    width: 22pt;
+    height: 1.4pt;
+    margin-top: 4.8pt;
+    background: var(--accent);
+  }
+  .side dl { margin-top: 8.6pt; }
+  .side dt {
+    font-size: 7.2pt;
+    font-weight: 700;
+    color: var(--side-label);
+  }
+  .side dd {
+    margin: 1.6pt 0 4.6pt;
+    font-size: 7.3pt;
+    line-height: 9.2pt;
+  }
+
+  /* ── main column ─────────────────────────────────────────── */
+  .main {
+    flex: 1;
+    padding: 34pt 34pt 34pt 30pt;
+  }
+  .main h2 {
+    font-size: 9.8pt;
+    font-weight: 700;
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .main h2::after {
+    content: "";
+    display: block;
+    width: 26pt;
+    height: 1.6pt;
+    margin: 4.6pt 0 9.8pt;
+    background: var(--accent);
+  }
+  section + section { margin-top: 15pt; }
+
+  .profile, li {
+    font-size: 8.4pt;
+    line-height: 11.1pt;
+  }
+
+  .role + .role, .proj + .proj { margin-top: 8pt; }
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8pt;
+  }
+  .role-head h3 { font-size: 9.6pt; font-weight: 700; color: var(--ink); }
+  .dates { font-size: 8.2pt; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .org { margin: 3pt 0 4.4pt; font-size: 8.2pt; color: var(--muted); }
+
+  .proj h3 { font-size: 9.2pt; line-height: 11.6pt; font-weight: 700; color: var(--ink); }
+  .stack { margin: 3pt 0 4pt; font-size: 7.6pt; line-height: 9.6pt; color: var(--accent); }
+  .links { margin: 1.5pt 0 0 9pt; font-size: 7.4pt; line-height: 9.4pt; color: var(--muted); }
+  .links b { color: var(--body); }
+
+  ul { list-style: none; }
+  /* Hanging indent, not position:absolute — positioned boxes are painted in a later pass, which
+     would put every bullet after all the role titles in the PDF's text order. */
+  li { padding-left: 9pt; text-indent: -9pt; }
+  li + li { margin-top: 2pt; }
+  li::before {
+    content: "•";
+    display: inline-block;
+    width: 9pt;
+    text-indent: 0;
+    font-weight: 700;
+    color: var(--accent);
+  }
+</style>
+<body>
+
+<!-- ═══════════════════════════════ PAGE 1 ═══════════════════════════════ -->
+<div class="page">
+  <aside class="side">
+    <div class="photo"><img src="photo.png" alt="Ermir Mulaku"></div>
+    <h1 class="name">Ermir Mulaku</h1>
+    <p class="title-lines">FULL-STACK SOFTWARE ENGINEER<br><span class="sub">REACT · TYPESCRIPT · NODE.JS/NESTJS · POSTGRESQL</span></p>
+
+    <h2>Contact</h2>
+    <dl>
+      <dt>Email</dt>
+      <dd><a href="mailto:ermirmulaku4@gmail.com">ermirmulaku4@gmail.com</a></dd>
+      <dt>Phone</dt>
+      <dd><a href="tel:+38345226592">+383 45 226 592</a></dd>
+      <dt>LinkedIn</dt>
+      <dd><a href="https://linkedin.com/in/ermir-mulaku-42059a137">linkedin.com/in/ermir-mulaku-42059a137</a></dd>
+      <dt>Portfolio</dt>
+      <dd><a href="https://www.ermir-mulaku.com">www.ermir-mulaku.com</a></dd>
+      <dt>GitHub</dt>
+      <dd><a href="https://github.com/ErmirMulaku">github.com/ErmirMulaku</a></dd>
+      <dt>Location</dt>
+      <dd>Prishtina, Kosovo</dd>
+    </dl>
+
+    <h2>Core skills</h2>
+    <dl>
+      <dt>TypeScript &amp; Web</dt>
+      <dd>TypeScript, React 19, Next.js 15/16, Redux Toolkit, TanStack Query, Angular/NgRx, SCSS/Tailwind, i18n &amp; RTL, PWA, Core Web Vitals</dd>
+      <dt>Mobile &amp; Cross-Platform</dt>
+      <dd>React Native / Expo (OTA, push, native printing), Electron, Socket.IO real-time</dd>
+      <dt>APIs &amp; Data</dt>
+      <dd>NestJS, Node.js, Laravel/PHP, REST · GraphQL · gRPC; PostgreSQL in depth (EXPLAIN, locking, exclusion constraints, zero-downtime migrations); idempotency, transactional outbox, Kafka; Prisma, MySQL, queued jobs, JWT/RBAC, multi-tenant design</dd>
+      <dt>Elixir (project)</dt>
+      <dd>Phoenix, Broadway Kafka consumer</dd>
+      <dt>Applied AI</dt>
+      <dd>OpenAI function calling &amp; embeddings, RAG chatbots, FAISS vector search, Python; Claude Code &amp; Copilot daily</dd>
+      <dt>Quality &amp; Production</dt>
+      <dd>Jest, Playwright, Cypress, Testing Library, Storybook, GitHub Actions CI/CD, Prometheus, health probes, feature flags, A/B testing &amp; analytics</dd>
+      <dt>Cloud &amp; Ops</dt>
+      <dd>AWS (App Runner, ECR, RDS), Google Cloud Run, Vercel, Docker</dd>
+    </dl>
+
+    <h2>Education</h2>
+    <dl>
+      <dt>BSc, Computer Science</dt>
+      <dd>University of Prishtina · 2017–2021</dd>
+    </dl>
+  </aside>
+
+  <main class="main">
+    <section>
+      <h2>Profile</h2>
+      <p class="profile">
+        Full-stack engineer, <b>deeper on the frontend</b>: 5+ years of production <b>React and
+        TypeScript</b> at eduwo (20,000+ users). Competent on the backend, shown in TutorHub:
+        <b>Postgres correctness under concurrency</b>, idempotency, a <b>transactional outbox with
+        Kafka</b> and GraphQL, proven with real-database tests. Claude Code daily, spec-first,
+        reviewing and testing what it produces. Based in Prishtina.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="role">
+        <div class="role-head"><h3>Software Engineer</h3><span class="dates">Jul 2025 – Present</span></div>
+        <p class="org">eduwo · Prishtina, Kosovo (Hybrid)</p>
+        <ul>
+          <li>Ship production <b>React 19 / Next.js 15</b> features in TypeScript on a Swiss education
+            marketplace serving <b>20,000+ users</b> — a multi-step matching wizard,
+            course/study/profile journeys and an AI recommendation chatbot — across four locales
+            with SSR and PWA support.</li>
+          <li>Built the customer-facing AI end to end: a <b>FAISS vector-search service</b> and the
+            recommendation chatbot (service layer → Next.js API route → React UI), plus
+            OpenAI-powered content generation in the admin.</li>
+          <li>Design, build and document <b>REST APIs in Laravel</b> — auth, validation, queued
+            background jobs, transactional email and notifications — consumed by the web app, the
+            admin and native clients.</li>
+          <li><b>Own quality and uptime</b> for the services I ship: ESLint, Jest, Playwright E2E,
+            pre-commit gates and monitoring of my endpoints in production.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head"><h3>Frontend Developer</h3><span class="dates">Jul 2021 – Jul 2025</span></div>
+        <p class="org">eduwo · Kosovo</p>
+        <ul>
+          <li>Built complex <b>single-page applications</b> with React, Redux Toolkit and TypeScript,
+            with a hard bar on performance, responsiveness and UX detail; tracked <b>Core Web
+            Vitals</b>.</li>
+          <li>Ran data-driven UI experiments — <b>A/B testing</b> plus product analytics — and used
+            production data to decide what to build and fix next.</li>
+          <li>Designed and documented <b>REST API contracts</b> powering frontend features,
+            coordinating payloads with backend and native consumers; built Next.js API routes as a
+            BFF layer.</li>
+          <li>Implemented interfaces from scratch in SCSS — responsive layouts, <b>animation</b>,
+            carousels, charts, maps, PWA — across the modern JS toolchain (Webpack, esbuild/SWC,
+            ESLint, Prettier, Formik + Yup).</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="role-head"><h3>Intern Front-End Developer</h3><span class="dates">Feb 2021 – Jun 2021</span></div>
+        <p class="org">Kutia · Prishtina, Kosovo</p>
+        <ul>
+          <li>Built responsive, accessible UI components inside a cross-functional product team,
+            strengthening fundamentals in JavaScript, React, HTML5, CSS3 and Git workflows.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Independent project</h2>
+      <div class="proj">
+        <h3>TutorHub — Tutoring Marketplace &amp; Booking Backend</h3>
+        <p class="stack">NestJS · PostgreSQL · GraphQL · gRPC · Kafka (Redpanda) · Elixir/Broadway · DataLoader</p>
+        <ul>
+          <li>Built end to end: a <b>NestJS API</b> over REST, GraphQL and gRPC, a Next.js storefront,
+            an Angular/NgRx dashboard, an Expo app and an npm slot engine.</li>
+          <li>Made booking <b>race-safe in Postgres</b> (conditional writes, exclusion constraints,
+            advisory locks): <b>20 parallel bookings of one slot → exactly 1</b> (was 20).</li>
+          <li>Made retries safe: <b>Idempotency-Key</b> across REST, GraphQL and gRPC (parallel
+            duplicates replay one response), plus idempotent Stripe webhooks and calls.</li>
+          <li>Moved events to a <b>transactional outbox → Kafka</b> with SKIP LOCKED relays and
+            idempotent Node and <b>Elixir (Broadway)</b> consumers; verified end to end at lag 0.</li>
+          <li>Tuned Postgres on a <b>2M-booking dataset</b>: deep pages <b>21 ms → 0.032 ms</b>;
+            <b>zero-downtime migrations</b> under concurrent writes (2 ms vs a 1,968 ms write stall).</li>
+          <li>Removed GraphQL N+1s with <b>DataLoaders</b> (150 → 3 queries for 50 bookings), added
+            keyset pagination and errors-as-data; gated new paths behind <b>feature flags</b>.</li>
+        </ul>
+        <p class="links"><b>Live:</b> <a href="https://tutorhub-marketplace.vercel.app/en">tutorhub-marketplace.vercel.app</a>
+          · <b>npm:</b> <a href="https://www.npmjs.com/package/tutorhub-slot-engine">tutorhub-slot-engine</a></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 2 ═══════════════════════════════ -->
+<div class="page">
+  <aside class="side">
+    <p class="name small">Ermir Mulaku</p>
+    <p class="title-lines">FULL-STACK SOFTWARE ENGINEER<br><span class="sub">REACT · TYPESCRIPT · NODE.JS/NESTJS · POSTGRESQL</span></p>
+
+    <h2>Selected links</h2>
+    <dl>
+      <dt>Portfolio</dt>
+      <dd><a href="https://www.ermir-mulaku.com">www.ermir-mulaku.com</a></dd>
+      <dt>GitHub</dt>
+      <dd><a href="https://github.com/ErmirMulaku">github.com/ErmirMulaku</a></dd>
+      <dt>Email</dt>
+      <dd><a href="mailto:ermirmulaku4@gmail.com">ermirmulaku4@gmail.com</a></dd>
+    </dl>
+
+    <h2>Working style</h2>
+    <dl>
+      <dt>End to end</dt>
+      <dd>I shape the problem with product and design, build it across the stack and follow it into production.</dd>
+      <dt>Production first</dt>
+      <dd>Instrumented, tested and observable — health probes, metrics, E2E gates, and the metrics that say whether it worked.</dd>
+      <dt>AI-native</dt>
+      <dd>Claude Code and Copilot in the loop every day; the judgement and the review stay mine.</dd>
+    </dl>
+
+    <h2>Certifications</h2>
+    <dl>
+      <dt>Advanced React Component Patterns</dt>
+      <dd>Udemy · 2022</dd>
+      <dt>Functional Programming in JavaScript</dt>
+      <dd>Udemy · 2023</dd>
+      <dt>Advanced JavaScript &amp; React</dt>
+      <dd>Beetroot Academy · 2021</dd>
+    </dl>
+  </aside>
+
+  <main class="main">
+    <section>
+      <h2>Shipped products</h2>
+
+      <div class="proj">
+        <h3>S2O — Cross-Platform Restaurant Platform · Viviark</h3>
+        <p class="stack">NestJS · Next.js · React Native (Expo) · Electron · Socket.IO</p>
+        <ul>
+          <li>Built a <b>multi-tenant SaaS</b> end to end: a NestJS REST API plus a Next.js web admin,
+            a React Native (Expo) app and an Electron desktop POS, sharing one API and a real-time
+            Socket.IO layer.</li>
+          <li>Built a <b>real-time order pipeline</b> (WebSocket gateways) to kitchen and bar displays
+            with server-enforced status transitions, JWT + PIN auth and FIFO inventory with expiry
+            tracking.</li>
+          <li>Designed the migration from pooled to <b>per-restaurant isolated tenancy</b> (container
+            + database per tenant) and the onboarding control plane.</li>
+          <li>Shipped the native clients myself: <b>Expo OTA updates, push notifications, native
+            printing</b> and Electron packaging (Windows, Linux).</li>
+        </ul>
+        <p class="links"><b>Live:</b> App Store &amp; Google Play — “S2O App”
+          · <a href="https://s2o-menu-theta.vercel.app">s2o-menu-theta.vercel.app</a></p>
+      </div>
+
+      <div class="proj">
+        <h3>Spicy Analytics — Multilingual RTL Web Platform</h3>
+        <p class="stack">Next.js · i18n · RTL · SSR / SEO</p>
+        <ul>
+          <li>Built a production multilingual platform with <b>full RTL support</b> (English LTR +
+            Arabic RTL, mirrored layout) via a key-based i18n system, for an enterprise client roster
+            spanning healthcare, banking and telecom.</li>
+          <li>Implemented per-locale routing, SSR-rendered SEO metadata and next/image optimization
+            across a responsive, content-heavy site.</li>
+        </ul>
+        <p class="links"><b>Live:</b> <a href="https://spicyanalytics.com">spicyanalytics.com</a></p>
+      </div>
+
+      <div class="proj">
+        <h3>Three60 Music — Animated E-commerce Site</h3>
+        <p class="stack">Next.js · CSS animations · E-commerce</p>
+        <ul>
+          <li>Built an <b>animation-rich</b>, responsive Next.js storefront with cart and CDN-served
+            media.</li>
+        </ul>
+        <p class="links"><b>Live:</b> <a href="https://three60-music.com">three60-music.com</a></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
