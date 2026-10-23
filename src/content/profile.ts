@@ -109,7 +109,17 @@ export const profile = {
     },
     {
       label: 'Backend',
-      items: ['NestJS', 'Node.js', 'Laravel', 'REST APIs', 'GraphQL', 'gRPC', 'Real-time / WebSockets'],
+      items: [
+        'NestJS',
+        'Node.js',
+        'Laravel',
+        'REST APIs',
+        'GraphQL',
+        'gRPC',
+        'Real-time / WebSockets',
+        'Kafka / event-driven (outbox)',
+        'Elixir / Phoenix (project)',
+      ],
     },
     {
       label: 'Data',
@@ -123,21 +133,12 @@ export const profile = {
         'OpenAI function calling & embeddings',
         'RAG chatbots',
         'FAISS vector search',
-        'LightGBM ranking',
         'AI-assisted development',
       ],
     },
     {
       label: 'Infra / DevOps',
-      items: [
-        'AWS',
-        'Google Cloud',
-        'Docker',
-        'Kubernetes',
-        'CI/CD (GitHub Actions)',
-        'Vercel',
-        'Prometheus',
-      ],
+      items: ['AWS', 'Google Cloud', 'Docker', 'CI/CD (GitHub Actions)', 'Vercel', 'Prometheus'],
     },
     {
       label: 'Testing',
