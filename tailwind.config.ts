@@ -10,6 +10,7 @@ const config: Config = {
     './src/app/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
     './src/content/**/*.{ts,tsx}',
+    './src/lib/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, FileText } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { StatCounter } from '@/components/ui/stat-counter';
 import { EASE_OUT } from '@/lib/motion';
@@ -73,6 +73,16 @@ export function Hero() {
                 className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 aria-hidden="true"
               />
+            </a>
+            <a
+              href={profile.resumeHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-2 py-3 text-sm font-medium text-fg-muted transition-colors hover:text-fg"
+            >
+              <FileText className="size-4" aria-hidden="true" />
+              <span className="link-underline">Résumé (PDF)</span>
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
           </motion.div>
 

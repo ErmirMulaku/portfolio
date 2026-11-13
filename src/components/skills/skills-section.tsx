@@ -1,61 +1,56 @@
+'use client';
+
 import { Award, GraduationCap } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import { useState } from 'react';
 import { profile } from '@/content/profile';
+import { skillCategories, skillsIn } from '@/content/skills';
+import { staggerContainer } from '@/lib/motion';
 import { Reveal } from '@/components/ui/reveal';
 import { SectionLabel } from '@/components/ui/section-label';
-import { TechTag } from '@/components/ui/tech-tag';
+import { CategoryFilter, type SkillFilter } from './category-filter';
+import { SkillCard } from './skill-card';
 
-export function Skills() {
+export function SkillsSection() {
+  const [filter, setFilter] = useState<SkillFilter>('all');
+  const prefersReduced = useReducedMotion();
+  const highlighted = skillCategories.find((c) => c.id === filter);
+
   return (
     <section id="skills" className="scroll-mt-24 border-t border-border py-24 md:py-32">
       <div className="container-page">
         <Reveal>
-          <SectionLabel index="03">Skills &amp; stack</SectionLabel>
+          <SectionLabel index="04">Skills &amp; stack</SectionLabel>
           <h2 className="mt-4 max-w-2xl text-section-title font-medium text-fg">
-            The tools I ship with.
+            The stack behind shipped products.
           </h2>
-          <p className="mt-5 max-w-xl text-lg text-fg-muted">
-            Grouped by where each piece sits in the product — from the interface down to the
-            pipeline that keeps it live.
-          </p>
         </Reveal>
 
-        {/* Skill groups — hairline rows, mono index per group. */}
-        <dl className="mt-14 divide-y divide-border overflow-hidden rounded-xl border border-border">
-          {profile.skills.map((group, i) => (
-            <Reveal key={group.label} delay={i * 0.04}>
-              <div className="hover:bg-surface/50 group relative grid gap-4 px-5 py-6 transition-colors duration-300 md:grid-cols-[13rem_1fr] md:gap-8 md:px-8">
-                {/* Left accent rule on hover. */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-y-0 left-0 w-px bg-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                />
-                <dt className="flex items-baseline gap-3">
-                  <span
-                    className="text-accent/60 font-mono text-xs transition-colors duration-300 group-hover:text-accent"
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="font-mono text-xs uppercase tracking-label text-fg-subtle transition-colors duration-300 group-hover:text-fg">
-                    {group.label}
-                  </span>
-                </dt>
-                <dd>
-                  <ul className="flex flex-wrap gap-2">
-                    {group.items.map((item) => (
-                      <li key={item}>
-                        <TechTag className="transition-colors duration-300 hover:border-border-strong hover:text-fg">
-                          {item}
-                        </TechTag>
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+        <Reveal className="mt-12">
+          <CategoryFilter categories={skillCategories} active={filter} onChange={setFilter} />
+        </Reveal>
 
+        <p className="sr-only" aria-live="polite">
+          {highlighted ? `Highlighting ${highlighted.title}` : ''}
+        </p>
+
+        {/* Bento: 1 col on mobile, 2 on tablet, 4 on desktop; wide cards span 2. */}
+        <motion.ul
+          className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          variants={staggerContainer}
+          initial={prefersReduced ? false : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {skillCategories.map((category) => (
+            <SkillCard
+              key={category.id}
+              category={category}
+              skills={skillsIn(category.id)}
+              active={filter === 'all' || filter === category.id}
+            />
+          ))}
+        </motion.ul>
         {/* Certifications & education — hairline card pair. */}
         <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
           <Reveal>

@@ -31,7 +31,7 @@ export function About() {
           {/* Narrative */}
           <Reveal delay={0.08}>
             <div>
-              <SectionLabel index="04">About</SectionLabel>
+              <SectionLabel index="05">About</SectionLabel>
               <h2 className="mt-4 text-section-title font-medium text-fg">
                 From Kosovo to Swiss production platforms.
               </h2>
