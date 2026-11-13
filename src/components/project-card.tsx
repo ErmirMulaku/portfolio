@@ -88,8 +88,11 @@ export function FeaturedProjectCard({ project, index }: { project: Project; inde
   const mediaRight = index % 2 === 0;
 
   return (
-    <article className="bg-surface/40 group relative rounded-xl border border-border p-6 transition-colors duration-300 hover:border-border-strong hover:bg-surface sm:p-8 lg:p-10">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+    <article
+      id={project.slug}
+      className="bg-surface/40 group relative scroll-mt-24 rounded-xl border border-border p-6 transition-colors duration-300 hover:border-border-strong hover:bg-surface sm:p-8 lg:p-10"
+    >
+      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Content */}
         <div className={cn('order-2', mediaRight ? 'lg:order-1' : 'lg:order-2')}>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -144,7 +147,10 @@ export function CompactProjectCard({ project }: { project: Project }) {
   const browser = project.media?.find((m) => m.type === 'browser');
 
   return (
-    <article className="bg-surface/40 group relative flex h-full flex-col rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface">
+    <article
+      id={project.slug}
+      className="bg-surface/40 group relative flex h-full scroll-mt-24 flex-col rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface"
+    >
       <div className="mb-6 overflow-hidden rounded-lg">
         <div className="transition-transform duration-500 ease-out-expo group-hover:scale-[1.03]">
           <DeviceFrame

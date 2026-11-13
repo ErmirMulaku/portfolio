@@ -15,11 +15,6 @@ export type ApproachPillar = {
   description: string;
 };
 
-export type SkillGroup = {
-  label: string;
-  items: string[];
-};
-
 export type Certification = {
   name: string;
   issuer: string;
@@ -27,7 +22,7 @@ export type Certification = {
 };
 
 /**
- * Profile content — name, headline, socials, skills, education.
+ * Profile content — name, headline, socials, education. Skills live in skills.ts.
  * All copy is accurate to the résumé / live products. See SPEC §1, §6, §7.
  */
 export const profile = {
@@ -85,70 +80,6 @@ export const profile = {
         'CI/CD, cloud infrastructure, and deployment workflows that keep products live, reliable, and easy to iterate on.',
     },
   ] as ApproachPillar[],
-
-  // Skills / stack — SPEC §6. Nothing invented; every entry is on the résumé.
-  skills: [
-    {
-      label: 'Languages',
-      items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'C#', 'Java'],
-    },
-    {
-      label: 'Frontend',
-      items: [
-        'React',
-        'Next.js',
-        'Angular',
-        'Vue.js',
-        'Redux Toolkit',
-        'TanStack Query',
-        'Zustand',
-        'Tailwind CSS',
-        'SCSS',
-        'Advanced React patterns',
-      ],
-    },
-    {
-      label: 'Backend',
-      items: [
-        'NestJS',
-        'Node.js',
-        'Laravel',
-        'REST APIs',
-        'GraphQL',
-        'gRPC',
-        'Real-time / WebSockets',
-        'Kafka / event-driven (outbox)',
-        'Elixir / Phoenix (project)',
-      ],
-    },
-    {
-      label: 'Data',
-      items: ['PostgreSQL / Prisma', 'MySQL', 'Queued jobs', 'Multi-tenant design'],
-    },
-    { label: 'Mobile', items: ['React Native / Expo', 'iOS + Android (both stores)'] },
-    { label: 'Desktop', items: ['Electron', 'Shipped desktop app'] },
-    {
-      label: 'AI / ML',
-      items: [
-        'OpenAI function calling & embeddings',
-        'RAG chatbots',
-        'FAISS vector search',
-        'AI-assisted development',
-      ],
-    },
-    {
-      label: 'Infra / DevOps',
-      items: ['AWS', 'Google Cloud', 'Docker', 'CI/CD (GitHub Actions)', 'Vercel', 'Prometheus'],
-    },
-    {
-      label: 'Testing',
-      items: ['Jest', 'Playwright', 'Cypress', 'Testing Library', 'Storybook'],
-    },
-    {
-      label: 'Practices',
-      items: ['Scalable systems', 'Clean architecture', 'i18n / RTL', 'SEO / SSR', 'A/B testing'],
-    },
-  ] as SkillGroup[],
 
   certifications: [
     { name: 'Advanced React Component Patterns', issuer: 'Udemy', year: '2022' },

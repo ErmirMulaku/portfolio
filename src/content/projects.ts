@@ -20,10 +20,8 @@ export type ProjectLink = {
 export type ProjectMedia = {
   type: 'browser' | 'phone' | 'image';
   /**
-   * Intended screenshot path. Screenshots are not yet captured, so cards render a
-   * clearly-labeled DeviceFrame placeholder at the correct aspect ratio instead of a
-   * broken <img>. Drop the real asset here and ProjectCard will show it automatically.
-   * TODO(owner): replace with a live screenshot of the site referenced in `alt`.
+   * Screenshot path under /public (e.g. /screenshots/eduwo.png). Projects without
+   * media render a labeled DeviceFrame placeholder at the correct aspect ratio.
    */
   src: string;
   alt: string;
