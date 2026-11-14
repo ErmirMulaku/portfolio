@@ -110,13 +110,9 @@ export function Contact() {
                   {profile.availabilityNote}
                 </span>
 
-                <p className="mt-8 max-w-md text-lg text-fg-muted">
-                  Email is the fastest way to reach me — I read everything.
-                </p>
-
                 <a
                   href={`mailto:${profile.email}`}
-                  className="mt-3 break-all text-2xl font-medium text-fg sm:text-3xl"
+                  className="mt-8 break-all text-2xl font-medium text-fg sm:text-3xl"
                 >
                   <span className="link-underline">{profile.email}</span>
                 </a>
