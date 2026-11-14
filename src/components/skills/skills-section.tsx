@@ -22,7 +22,7 @@ export function SkillsSection() {
         <Reveal>
           <SectionLabel index="04">Skills &amp; stack</SectionLabel>
           <h2 className="mt-4 max-w-2xl text-section-title font-medium text-fg">
-            The stack behind shipped products.
+            Full-stack, from interface to infrastructure.
           </h2>
         </Reveal>
 

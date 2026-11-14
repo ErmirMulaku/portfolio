@@ -42,18 +42,13 @@ export function SkillCard({ category, skills, active }: SkillCardProps) {
           style={{ background: SPOTLIGHT_BG }}
         />
 
-        <header className="relative flex items-start justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-border bg-bg text-accent">
-              <Icon className="size-4" aria-hidden="true" />
-            </span>
-            <h3 id={titleId} className="text-lg font-semibold text-fg">
-              {category.title}
-            </h3>
-          </div>
-          <span className="shrink-0 pt-2.5 font-mono text-xs text-fg-muted">
-            {skills.length} {skills.length === 1 ? 'tool' : 'tools'}
+        <header className="relative flex min-w-0 items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-border bg-bg text-accent">
+            <Icon className="size-4" aria-hidden="true" />
           </span>
+          <h3 id={titleId} className="text-lg font-semibold text-fg">
+            {category.title}
+          </h3>
         </header>
 
         <p className="relative mt-3 text-sm leading-relaxed text-fg-muted">

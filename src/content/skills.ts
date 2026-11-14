@@ -1,5 +1,4 @@
 import {
-  Braces,
   Cloud,
   Database,
   FlaskConical,
@@ -21,7 +20,7 @@ import {
 export type SkillLevel = 'daily' | 'experienced' | 'familiar';
 
 export type SkillCategoryId =
-  'languages' | 'frontend' | 'backend' | 'mobile' | 'data' | 'testing' | 'cloud';
+  'frontend' | 'backend' | 'mobile' | 'data' | 'testing' | 'cloud';
 
 /** Slugs of projects in projects.ts — chips link to `#<slug>` in the work section. */
 export type ProjectSlug = 'eduwo' | 'scan2order' | 'tutorhub' | 'spicy-analytics' | 'three60-music';
@@ -50,16 +49,8 @@ export const levelLabels: Record<SkillLevel, string> = {
   familiar: 'Familiar',
 };
 
-// Order = bento order. Desktop rows: [languages, frontend] [backend, mobile] [data, testing, cloud].
+// Order = bento order. Desktop rows: [frontend, backend] [mobile, data, testing, cloud].
 export const skillCategories: SkillCategory[] = [
-  {
-    id: 'languages',
-    title: 'Languages',
-    filterLabel: 'Languages',
-    description: 'The languages I write production code in.',
-    icon: Braces,
-    size: 'wide',
-  },
   {
     id: 'frontend',
     title: 'Frontend',
@@ -82,7 +73,7 @@ export const skillCategories: SkillCategory[] = [
     filterLabel: 'Mobile',
     description: 'Cross-platform apps for the App Store, Google Play and desktop.',
     icon: MonitorSmartphone,
-    size: 'wide',
+    size: 'narrow',
   },
   {
     id: 'data',
@@ -106,7 +97,7 @@ export const skillCategories: SkillCategory[] = [
     filterLabel: 'Cloud',
     description: 'Where products are built, deployed and hosted.',
     icon: Cloud,
-    size: 'wide',
+    size: 'narrow',
   },
 ];
 
@@ -118,17 +109,9 @@ const ALL_WEB: ProjectSlug[] = [
   'three60-music',
 ];
 
-// One line per skill — languages and frameworks only, no concepts or practices.
+// One line per skill — frameworks and tools only, no concepts or practices.
 // prettier-ignore
 export const skills: Skill[] = [
-  // Languages
-  { name: 'TypeScript', category: 'languages', level: 'daily', usedIn: ['eduwo', 'tutorhub', 'spicy-analytics'] },
-  { name: 'JavaScript', category: 'languages', level: 'daily' },
-  { name: 'PHP', category: 'languages', level: 'experienced' },
-  { name: 'Python', category: 'languages', level: 'experienced' },
-  { name: 'SQL', category: 'languages', level: 'daily' },
-  { name: 'Elixir', category: 'languages', level: 'familiar', usedIn: ['tutorhub'] },
-
   // Frontend
   { name: 'React', category: 'frontend', level: 'daily', usedIn: ALL_WEB },
   { name: 'Next.js', category: 'frontend', level: 'daily', usedIn: ALL_WEB },
@@ -140,6 +123,8 @@ export const skills: Skill[] = [
   { name: 'NestJS', category: 'backend', level: 'experienced', usedIn: ['tutorhub'] },
   { name: 'Laravel', category: 'backend', level: 'experienced' },
   { name: 'Phoenix', category: 'backend', level: 'familiar', usedIn: ['tutorhub'] },
+  { name: 'C#', category: 'backend', level: 'familiar' },
+  { name: 'Java', category: 'backend', level: 'familiar' },
 
   // Mobile & desktop
   { name: 'React Native', category: 'mobile', level: 'experienced', usedIn: ['scan2order'] },
