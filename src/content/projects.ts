@@ -52,7 +52,7 @@ export const projects: Project[] = [
     name: 'Eduwo',
     tagline: 'Swiss continuing-education platform with AI-based course matching.',
     role: 'Frontend Developer → Software Engineer (full-stack)',
-    timeframe: '2021 – present',
+    timeframe: '2021 – 2026',
     summary:
       'Eduwo helps people in Switzerland discover and compare further-education programmes. AI-based matching recommends courses in ~3 minutes; users compare offers side by side. Multilingual (German, French, Italian, English) with 300+ partner schools. My primary long-term product — grew from frontend into full-stack ownership.',
     highlights: [

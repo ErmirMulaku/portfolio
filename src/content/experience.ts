@@ -35,6 +35,7 @@ export const experience: Employer[] = [
       {
         title: 'Software Engineer',
         start: 'Jul 2025',
+        end: 'Nov 2026',
         highlights: [
           'Ship production React 19 / Next.js 15 features on a Swiss education marketplace serving **20,000+ users**, across four locales with SSR and PWA support.',
           'Built the customer-facing AI end to end: a **FAISS vector-search service** and a recommendation chatbot, plus OpenAI-powered content generation in the admin.',
