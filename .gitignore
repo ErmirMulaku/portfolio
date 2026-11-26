@@ -40,3 +40,6 @@ next-env.d.ts
 
 # build spec / planning docs (not part of the app)
 SPEC.md.pdf
+
+# résumé sources live in the private ErmirMulaku/cv repo
+/resumes
