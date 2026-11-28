@@ -82,7 +82,7 @@ export const projects: Project[] = [
       'Full restaurant operations platform — NFC web menu, mobile apps, and desktop, with real-time staff coordination.',
     role: 'Software Engineer (full-stack, multi-platform)',
     summary:
-      'An all-in-one restaurant / hospitality system. Guests open an NFC-tag web menu at the table; staff use role-based dashboards (waiter / kitchen / bar) with real-time order tracking, scheduling / clock-in-out, and notifications. Ships as web + iOS + Android + a desktop app. Includes AI invoice scanning ("Skano Faturën") that reads supplier invoices and updates stock automatically.',
+      'An all-in-one restaurant system. Guests open an NFC-tag web menu at the table; staff use role-based dashboards (waiter / kitchen / bar) with real-time order tracking, scheduling / clock-in-out, and notifications. Ships as web + iOS + Android + a desktop app. Includes AI invoice scanning ("Skano Faturën") that reads supplier invoices and updates stock automatically.',
     highlights: [
       'Real-time order flow kitchen ↔ table',
       'Role-based dashboards (waiter / kitchen / bar)',
